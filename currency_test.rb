@@ -17,6 +17,12 @@ class CurrencyTest <Minitest::Test
     assert my_dollar == your_dollar
   end
 
+  def test_add_two_currency_objects
+    my_money = Currency.new(5, "USD")
+    your_money = Currency.new(10, "USD")
+    assert my_money + your_money == Currency.new(15, "USD")
+  end
+
 end
 
 
