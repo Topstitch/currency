@@ -64,6 +64,13 @@ class CurrencyTest <Minitest::Test
     assert_equal Currency.new(1, :USD), newest_money
   end
 
+  def test_currency_converter_converts_different_currency_types
+    money_machine = CurrencyConverter.new
+    my_money = Currency.new(5, :USD)
+    changed_money = money_machine.convert(my_money, :EUR)
+    assert_equal Currency.new(4.3192, :EUR), changed_money
+  end
+
 end
 
 
