@@ -23,6 +23,13 @@ class CurrencyTest <Minitest::Test
     assert my_money + your_money == Currency.new(15, "USD")
   end
 
+  def test_subtract_two_currency_objects
+    my_money = Currency.new(20, "USD")
+    #what about situations where this would be a negative #? $ doesn't work that way
+    your_money = Currency.new(5, "USD")
+    assert (my_money - your_money) == Currency.new(15, "USD")
+  end
+
 end
 
 
