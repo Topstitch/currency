@@ -1,7 +1,9 @@
 require 'minitest/autorun'
 require 'minitest/pride'
 require './currency.rb'
+require './currency_converter.rb'
 
+#which requires are required????
 class CurrencyTest <Minitest::Test
   def test_currency_class_exists
     assert Currency
@@ -14,6 +16,7 @@ class CurrencyTest <Minitest::Test
   def test_two_currency_objects_are_equivalent
     my_dollar = Currency.new(1, "USD")
     your_dollar = Currency.new(1, "USD")
+    #could have put some refutes in here with different amounts
     assert my_dollar == your_dollar
   end
 
@@ -42,6 +45,10 @@ class CurrencyTest <Minitest::Test
     my_money = Currency.new(10, "USD")
     assert (my_money * 8) == Currency.new(80, "USD")
     assert (my_money * 2.5) == Currency.new(25, "USD")
+  end
+
+  def test_currency_converter_class_exists
+    assert CurrencyConverter
   end
 
 end
