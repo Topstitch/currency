@@ -37,6 +37,13 @@ class CurrencyTest <Minitest::Test
     assert_raises(DifferentCurrencyCodeError) {my_money - your_money}
   end
 
+  def test_can_multiply_by_float_or_fixnum
+    #later do something in here about decimal places
+    my_money = Currency.new(10, "USD")
+    assert (my_money * 8) == Currency.new(80, "USD")
+    assert (my_money * 2.5) == Currency.new(25, "USD")
+  end
+
 end
 
 

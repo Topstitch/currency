@@ -27,4 +27,11 @@ class Currency
     end
   end
 
+  def * (number)
+    #not sure if specifying amount class is necessary...
+    if ((number.class == Fixnum) || (number.class == Float)) && ((amount.class == Fixnum) || (amount.class == Float))
+      Currency.new(amount * number, currency_code)
+    end
+  end
+
 end
