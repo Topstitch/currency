@@ -27,7 +27,14 @@ class CurrencyTest <Minitest::Test
     my_money = Currency.new(20, "USD")
     #what about situations where this would be a negative #? $ doesn't work that way
     your_money = Currency.new(5, "USD")
-    assert (my_money - your_money) == Currency.new(15, "USD")
+    assert my_money - your_money == Currency.new(15, "USD")
+  end
+
+  def test_combining_mismatched_currencies_raises_error
+    my_money = Currency.new(15, "USD")
+    your_money = Currency.new(25, "GBP")
+    assert_raises(DifferentCurrencyCodeError) {my_money + your_money}
+    assert_raises(DifferentCurrencyCodeError) {my_money - your_money}
   end
 
 end

@@ -1,3 +1,5 @@
+require './different_currency_code_error'
+
 class Currency
   attr_reader :amount, :currency_code
   def initialize(amount, currency_code)
@@ -12,12 +14,16 @@ class Currency
   def + (other_money)
     if self.currency_code == other_money.currency_code
       Currency.new(amount + other_money.amount, currency_code)
+    else
+      raise DifferentCurrencyCodeError
     end
   end
 
   def - (other_money)
     if self.currency_code == other_money.currency_code
       Currency.new(amount - other_money.amount, currency_code)
+    else
+      raise DifferentCurrencyCodeError
     end
   end
 
