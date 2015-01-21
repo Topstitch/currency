@@ -51,6 +51,12 @@ class CurrencyTest <Minitest::Test
     assert CurrencyConverter
   end
 
+  def test_currency_converter_initializes_with_hash
+    money_machine = CurrencyConverter.new
+    different_currencies = money_machine.currency_codes
+    assert_equal Hash, different_currencies.class
+  end
+
 end
 
 
