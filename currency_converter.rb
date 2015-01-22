@@ -1,5 +1,6 @@
 require './currency.rb'
-require 'pry'
+require './unknown_currency_code_error'
+
 
 class CurrencyConverter < Currency
 
@@ -11,19 +12,15 @@ class CurrencyConverter < Currency
                        AUD: 1.23455,
                        CAD: 1.23290,
                        JPY: 117.874}
-    @currency_symbols = {"$" => :USD,
-                         EUR: "€",
-                         GBP: "£",
-                         AUD: "A$",
-                         CAD: "C$",
-                         JPY: "¥"}
+
   end
 
   def convert(current_money, desired_type)
-    # if desired_type is not included in known currency codes, raise an error
-    if current_money.currency_code == desired_type
+    if !(currency_rates.keys.include?(desired_type))
+      raise UnknownCurrencyCodeError, "Sorry, we do not have the rates for that currency type."
+    elsif current_money.currency_code == desired_type
       Currency.new(current_money.amount, desired_type)
-    else
+    elsif
       my_money = current_money.amount
       total = my_money * currency_rates[desired_type] / currency_rates[current_money.currency_code]
       Currency.new(total, desired_type)

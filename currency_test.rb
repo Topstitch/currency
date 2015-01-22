@@ -76,7 +76,12 @@ class CurrencyTest <Minitest::Test
     my_money = Currency.new(10, :EUR)
     changed_money = money_machine.convert(my_money, :GBP)
     assert_equal Currency.new(7.646554917577329, :GBP), changed_money
+  end
 
+  def test_currency_converter_raiser_error_with_unknown_currency
+    money_machine = CurrencyConverter.new
+    my_money = Currency.new(10, :BRL)
+    assert_raises(UnknownCurrencyCodeError) {money_machine.convert(my_money, :USD)}
   end
 
 end

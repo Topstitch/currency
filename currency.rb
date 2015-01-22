@@ -33,3 +33,10 @@ class Currency
   end
 
 end
+
+# @currency_symbols = {"$" => :USD,
+#   EUR: "€",
+#   GBP: "£",
+#   AUD: "A$",
+#   CAD: "C$",
+#   JPY: "¥"}
