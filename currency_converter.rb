@@ -3,17 +3,29 @@ require 'pry'
 
 class CurrencyConverter < Currency
 
-  attr_reader :currency_codes
+  attr_reader :currency_rates
   def initialize
-    @currency_codes = {USD: 1.00000, EUR: 0.86384}
+    @currency_rates = {USD: 1.00000,
+                       EUR: 0.86384,
+                       GBP: 0.66054,
+                       AUD: 1.23455,
+                       CAD: 1.23290,
+                       JPY: 117.874}
+    @currency_symbols = {"$" => :USD,
+                         EUR: "€",
+                         GBP: "£",
+                         AUD: "A$",
+                         CAD: "C$",
+                         JPY: "¥"}
   end
 
   def convert(current_money, desired_type)
+    # if desired_type is not included in known currency codes, raise an error
     if current_money.currency_code == desired_type
       Currency.new(current_money.amount, desired_type)
     else
       my_money = current_money.amount
-      total = my_money * currency_codes[desired_type] / currency_codes[current_money.currency_code]
+      total = my_money * currency_rates[desired_type] / currency_rates[current_money.currency_code]
       Currency.new(total, desired_type)
     end
   end

@@ -53,7 +53,7 @@ class CurrencyTest <Minitest::Test
 
   def test_currency_converter_initializes_with_hash
     money_machine = CurrencyConverter.new
-    different_currencies = money_machine.currency_codes
+    different_currencies = money_machine.currency_rates
     assert_equal Hash, different_currencies.class
   end
 
@@ -64,11 +64,19 @@ class CurrencyTest <Minitest::Test
     assert_equal Currency.new(1, :USD), newest_money
   end
 
-  def test_currency_converter_converts_different_currency_types
+  def test_currency_converter_converts_from_usd_to_another_type
     money_machine = CurrencyConverter.new
     my_money = Currency.new(5, :USD)
     changed_money = money_machine.convert(my_money, :EUR)
     assert_equal Currency.new(4.3192, :EUR), changed_money
+  end
+
+  def test_currency_converter_converts_different_currency_types
+    money_machine = CurrencyConverter.new
+    my_money = Currency.new(10, :EUR)
+    changed_money = money_machine.convert(my_money, :GBP)
+    assert_equal Currency.new(7.646554917577329, :GBP), changed_money
+
   end
 
 end
